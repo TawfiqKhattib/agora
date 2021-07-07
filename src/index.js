@@ -3,10 +3,12 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { Inventory } from '../src/stores/Inventory'
 
+let agora = new Inventory()
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <App store={agora} />
   </React.StrictMode>,
   document.getElementById('root')
 );
