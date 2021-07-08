@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { observer } from 'mobx-react'
+import { observer, inject } from 'mobx-react'
 
 class Item extends Component {
   constructor(){
@@ -12,7 +12,7 @@ class Item extends Component {
  
   buyItem = () =>{
     let itemName = this.props.item.name
-    this.props.store.buyItem(itemName)
+    this.props.agora.buyItem(itemName)
     this.setState({update:true})
   }
 
@@ -23,7 +23,7 @@ class Item extends Component {
         if(price===null){
             price=this.props.item.price;
         }
-        this.props.store.changePrice(itemName,price);
+        this.props.agora.changePrice(itemName,price);
         this.setState({update:true})
         this.setState({clicked:0})
       }
@@ -45,4 +45,4 @@ class Item extends Component {
     )}
 }
 
-export default observer(Item)
+export default inject("agora")(observer(Item))

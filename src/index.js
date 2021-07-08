@@ -2,14 +2,17 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
+import { Provider } from 'mobx-react'
 import reportWebVitals from './reportWebVitals';
 import { Inventory } from '../src/stores/Inventory'
 
 let agora = new Inventory()
+
+const stores ={agora}
 ReactDOM.render(
-  <React.StrictMode>
-    <App store={agora} />
-  </React.StrictMode>,
+  <Provider {...stores}>
+    <App />
+  </Provider>,
   document.getElementById('root')
 );
 

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { observer } from 'mobx-react';
+import { observer, inject } from 'mobx-react';
 import Item from './Item';
 
 class Market extends Component {
@@ -20,7 +20,7 @@ class Market extends Component {
   EnterClick(event){
     if(event.key === 'Enter'){
         let inputVal = this.state.inputVal;
-        this.props.store.addItem(inputVal)
+        this.props.agora.addItem(inputVal)
         this.setState({inputVal:""})
     }      
   }
@@ -34,12 +34,12 @@ class Market extends Component {
                                                         
             </input>
             <ul style={{backgroundColor: "lightblue",maxWidth:'600px'}}>
-                 {this.props.store.list.map((item,ind) => <Item item={item} 
+                 {this.props.agora.list.map((item,ind) => <Item item={item} 
                                                             key = {ind}
-                                                            store={this.props.store} />)}
+                                                            />)}
             </ul>
         </div>)
     }
 }
 
-export default observer(Market)
+export default inject("agora")(observer(Market))

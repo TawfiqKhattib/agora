@@ -1,4 +1,4 @@
-import { observable, action, makeObservable } from 'mobx'
+import { observable, action, makeObservable, computed } from 'mobx'
 import { Item } from './Item'
 
 
@@ -10,10 +10,14 @@ export class Inventory  {
             list: observable,
             addItem: action,
             buyItem: action,
-            changePrice: action
+            changePrice: action,
+            numItems: computed
         })
     }
 
+    get numItems(){
+        return this.list.length;
+    }
     addItem = (name,price=0,quantity=1) => {
         // your code here
         let itemIndx = this.list.findIndex(item => item.name===name);
